@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+			background-image:url('p2.jpg');
+			background-size:100%;
+			padding:20px
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			background-image:url('galaxy.jpg');
+			background-size:100%;
+        }
+		.abc{
+			align:bottom;
+			padding:20px;	
+		}
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            font-weight: bold;
+            text-align: center;
+			max-width: 400px;
+			padding:20px;
+			color:#fff;
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			background-size:100%;
+			margin:0 auto;
+			margin-top:150px;
+        }
+    </style>
+</head>
+<body >
+    <div class="container">
+        <h1>Temperature Converter</h1>
+        <label for="temperature">Enter Temperature:</label>
+        <input type="number" id="temperature" placeholder="Enter temperature" />
+        <label for="unit">Select Unit:</label>
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>		
+        <div class="abc">
+		<button onclick="convertTemperature()">Convert</button>
+		
+		</div>
+    </div>
+	<div id="result"></div>
+    <script>
+        function convertTemperature() {
+            const temperatureInput = parseFloat(document.getElementById('temperature').value);
+            const unit = document.getElementById('unit').value;
+            let result;
+
+            if (unit === 'celsius') {
+                result = `${temperatureInput}°C is ${((temperatureInput * 9/5) + 32).toFixed(2)}°F and ${(temperatureInput + 273.15).toFixed(2)}K.`;
+            } else if (unit === 'fahrenheit') {
+                result = `${temperatureInput}°F is ${((temperatureInput - 32) * 5/9).toFixed(2)}°C and ${((temperatureInput - 32) * 5/9 + 273.15).toFixed(2)}K.`;
+            } else {
+                result = `${temperatureInput}K is ${(temperatureInput - 273.15).toFixed(2)}°C and ${((temperatureInput - 273.15) * 9/5 + 32).toFixed(2)}°F.`;
+            }
+			const resultElement = document.getElementById('result');
+            resultElement.style.display = 'block';
+            resultElement.textContent = result;
+            setTimeout(function () {
+                resultElement.style.display = 'none';
+            }, 3000);
+			
+        }
+    </script>
+</body>
+</html>
